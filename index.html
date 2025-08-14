@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Engineer Portfolio | Cloud Infrastructure Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --shadow-light: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0e27, #1a1f3a, #2d3561);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Project Cards */
+        .project {
+            background: var(--card-bg);
+            margin: 4rem 0;
+            border-radius: 24px;
+            box-shadow: var(--shadow-heavy);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-header {
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+
+        .project h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-meta {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .project-content {
+            padding: 3rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+        }
+
+        .tech {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1565c0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(21, 101, 192, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(21, 101, 192, 0.3);
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .metric:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--success-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Screenshots */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .screenshot {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .screenshot:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-caption {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .screenshot-caption small {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .skill-category h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            color: var(--text-primary);
+            padding-left: 1rem;
+        }
+
+        .skill-list li:before {
+            content: "✨";
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* Cost Summary */
+        .cost-summary {
+            background: var(--success-gradient);
+            color: white;
+            padding: 4rem;
+            border-radius: 24px;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cost-summary h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cost-summary .metric {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cost-summary .metric-value {
+            color: white;
+            background: none;
+            -webkit-text-fill-color: white;
+        }
+
+        .cost-summary .metric-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* GitHub Links */
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #24292e, #2f363d);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .github-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-heavy);
+            background: linear-gradient(135deg, #2f363d, #24292e);
+        }
+
+        .github-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 6rem;
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .project-header,
+            .project-content {
+                padding: 2rem;
+            }
+            
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <div class="container">
+            <h1 class="hero-title">
+                <i class="fas fa-rocket"></i> DevOps Engineer Portfolio
+            </h1>
+            <p class="hero-subtitle">Enterprise-Level Cloud Infrastructure & Automation Specialist</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">4</span>
+                    <span class="hero-stat-label">Complete Projects</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">30+</span>
+                    <span class="hero-stat-label">Technologies</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">$2.42</span>
+                    <span class="hero-stat-label">Total Cost</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">7</span>
+                    <span class="hero-stat-label">Hours Development</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="project">
+                <div class="project-header">
+                    <h2><i class="fas fa-shopping-cart"></i> CloudNative E-Commerce Platform</h2>
+                    <p class="project-meta"><strong>Duration:</strong> 2 hours deployment + documentation | <strong>Cost:</strong> $0.42</p>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span class="tech">AWS EKS</span>
+                        <span class="tech">Terraform</span>
+                        <span class="tech">AWS Lambda</span>
+                        <span class="tech">AWS S3</span>
+                        <span class="tech">Kubernetes</span>
+                        <span class="tech">Docker</span>
+                        <span class="tech">React</span>
+                        <span class="tech">Node.js</span>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">30min</div>
+                            <div class="metric-label">Deployment Time</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">15+</div>
+                            <div class="metric-label">AWS Resources</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Infrastructure as Code</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.42</div>
+                            <div class="metric-label">Total Cost</div>
+                        </div>
+                    </div>
+
+                    <div class="screenshots">
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/01-frontend-dashboard.png" alt="Frontend Dashboard">
+                            <div class="screenshot-caption">React Frontend - E-commerce dashboard<br><small>User interface showing order management and business metrics</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/02-metrics-charts.png" alt="Metrics Charts">
+                            <div class="screenshot-caption">Business Metrics - Real-time charts<br><small>Live data visualization showing system performance and usage</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/04-lambda-function.png" alt="Lambda Function">
+                            <div class="screenshot-caption">Lambda Function - Serverless processing<br><small>AWS serverless function handling order processing automatically</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/07-terraform-output.png" alt="Terraform">
+                            <div class="screenshot-caption">Terraform - Infrastructure deployment<br><small>Infrastructure as Code creating AWS resources automatically</small></div>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-target"></i> Key Achievements:</h3>
+                    <ul class="skill-list">
+                        <li>Deployed full-stack application on Kubernetes</li>
+                        <li>Implemented serverless order processing with Lambda</li>
+                        <li>Automated infrastructure provisioning with Terraform</li>
+                        <li>Set up comprehensive monitoring with CloudWatch</li>
+                    </ul>
+
+                    <a href="https://github.com/username/cloudnative-ecommerce" class="github-link">
+                        <i class="fab fa-github"></i> View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h2><i class="fab fa-docker"></i> Zero-Cost Local DevOps Environment</h2>
+                    <p class="project-meta"><strong>Duration:</strong> 1 hour setup + documentation | <strong>Cost:</strong> $0.00</p>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span class="tech">Docker</span>
+                        <span class="tech">Docker Compose</span>
+                        <span class="tech">Prometheus</span>
+                        <span class="tech">Grafana</span>
+                        <span class="tech">Redis</span>
+                        <span class="tech">Node.js</span>
+                        <span class="tech">React</span>
+                        <span class="tech">Microservices</span>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">5</div>
+                            <div class="metric-label">Services</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Local Development</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Real-time</div>
+                            <div class="metric-label">Metrics Collection</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.00</div>
+                            <div class="metric-label">Total Cost</div>
+                        </div>
+                    </div>
+
+                    <div class="screenshots">
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/Frontend App.png" alt="Frontend Application">
+                            <div class="screenshot-caption">Application - Health status dashboard<br><small>Web interface showing system health and service status</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/Grafana Dashboard.png" alt="Grafana Dashboard">
+                            <div class="screenshot-caption">Grafana - Custom monitoring dashboard<br><small>Beautiful charts and graphs showing system metrics</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/Prometheus Home.png" alt="Prometheus Home">
+                            <div class="screenshot-caption">Prometheus - Main interface<br><small>Metrics collection system monitoring all services</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/Docker Status.png" alt="Docker Status">
+                            <div class="screenshot-caption">Docker - All services running<br><small>Terminal showing all containerized services running successfully</small></div>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-target"></i> Key Achievements:</h3>
+                    <ul class="skill-list">
+                        <li>Built complete local DevOps environment</li>
+                        <li>Implemented microservices with Docker Compose</li>
+                        <li>Set up Prometheus metrics collection</li>
+                        <li>Created Grafana monitoring dashboards</li>
+                    </ul>
+
+                    <a href="https://github.com/Buik1/simple-devops-demo" class="github-link">
+                        <i class="fab fa-github"></i> View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h2><i class="fas fa-sync-alt"></i> Enterprise CI/CD Pipeline</h2>
+                    <p class="project-meta"><strong>Duration:</strong> 1 hour development + automation | <strong>Cost:</strong> $0.00</p>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span class="tech">GitHub Actions</span>
+                        <span class="tech">Docker</span>
+                        <span class="tech">Express.js</span>
+                        <span class="tech">Jest Testing</span>
+                        <span class="tech">npm audit</span>
+                        <span class="tech">Multi-stage Builds</span>
+                        <span class="tech">Nginx</span>
+                        <span class="tech">Security Scanning</span>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">4</div>
+                            <div class="metric-label">Pipeline Stages</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5/5</div>
+                            <div class="metric-label">Tests Passing</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Automated</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.00</div>
+                            <div class="metric-label">Total Cost</div>
+                        </div>
+                    </div>
+
+                    <div class="screenshots">
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/github-actions-pipeline.png" alt="GitHub Actions Pipeline">
+                            <div class="screenshot-caption">GitHub Actions - 4-stage CI/CD pipeline complete<br><small>Automated workflow testing, securing, building, and deploying code</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/jest-tests-passing.png" alt="Jest Tests">
+                            <div class="screenshot-caption">Jest - All 5 tests passing (100% success)<br><small>Automated testing ensuring code quality and functionality</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/security-audit-clean.png" alt="Security Audit">
+                            <div class="screenshot-caption">Security - npm audit clean (0 vulnerabilities)<br><small>Security scan showing no known vulnerabilities in dependencies</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/docker-build-success.png" alt="Docker Build">
+                            <div class="screenshot-caption">Docker - Multi-stage build successful<br><small>Containerized application built and ready for deployment</small></div>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-target"></i> Key Achievements:</h3>
+                    <ul class="skill-list">
+                        <li>Built 4-stage automated CI/CD pipeline</li>
+                        <li>Implemented comprehensive Jest test suite with 5 passing tests</li>
+                        <li>Integrated security scanning with npm audit (0 vulnerabilities)</li>
+                        <li>Created multi-stage Docker builds for production optimization</li>
+                    </ul>
+
+                    <a href="https://github.com/Buik1/ci-cd-pipeline-demo" class="github-link">
+                        <i class="fab fa-github"></i> View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h2><i class="fas fa-cloud"></i> Hybrid Cloud Kubernetes Support</h2>
+                    <p class="project-meta"><strong>Duration:</strong> 3 hours development + documentation | <strong>Cost:</strong> $2.00</p>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span class="tech">AWS EKS</span>
+                        <span class="tech">Kubernetes</span>
+                        <span class="tech">Kind (Local K8s)</span>
+                        <span class="tech">Helm Charts</span>
+                        <span class="tech">Python</span>
+                        <span class="tech">Multi-Cluster</span>
+                        <span class="tech">Hybrid Cloud</span>
+                        <span class="tech">Support Automation</span>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Kubernetes Clusters</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Hybrid Coverage</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">60%</div>
+                            <div class="metric-label">Cost Savings</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$2.00</div>
+                            <div class="metric-label">Total Cost</div>
+                        </div>
+                    </div>
+
+                    <div class="screenshots">
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/hybrid-clusters-overview.png" alt="Hybrid Clusters">
+                            <div class="screenshot-caption">Multi-cluster overview - AWS EKS + Local Kind<br><small>Shows both cloud and local Kubernetes clusters managed from one terminal</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/helm-deployments-both.png" alt="Helm Deployments">
+                            <div class="screenshot-caption">Helm deployments across both environments<br><small>Same application running in both cloud and local clusters</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/kubectl-contexts.png" alt="Kubectl Contexts">
+                            <div class="screenshot-caption">Multi-context management with kubectl<br><small>Switching between different Kubernetes environments seamlessly</small></div>
+                        </div>
+                        <div class="screenshot">
+                            <img src="../devops-portfolio-website/screenshots/python-monitoring-output.png" alt="Python Monitoring">
+                            <div class="screenshot-caption">Python automation scripts for support tasks<br><small>Automated health monitoring across hybrid cloud environments</small></div>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-target"></i> Key Achievements:</h3>
+                    <ul class="skill-list">
+                        <li>Built hybrid cloud architecture (AWS EKS + local Kubernetes)</li>
+                        <li>Implemented multi-cluster Helm deployments</li>
+                        <li>Created Python automation scripts for support tasks</li>
+                        <li>Achieved 60% cost savings through hybrid approach</li>
+                    </ul>
+
+                    <a href="https://github.com/username/hybrid-cloud-support" class="github-link">
+                        <i class="fab fa-github"></i> View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <div class="cost-summary">
+                <h2><i class="fas fa-dollar-sign"></i> Portfolio Investment Summary</h2>
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-value">$2.42</div>
+                        <div class="metric-label">Total AWS Cost</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">7 Hours</div>
+                        <div class="metric-label">Development Time</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">30+</div>
+                        <div class="metric-label">Technologies</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">$95k+</div>
+                        <div class="metric-label">Skills Demonstrated</div>
+                    </div>
+                </div>
+                <p style="font-size: 1.3rem; margin-top: 2rem; font-weight: 600;">
+                    <strong>ROI: 33,058x return on investment</strong><br>
+                    Demonstrating enterprise-level DevOps capabilities for under $3
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h3><i class="fas fa-rocket"></i> Ready for DevOps Engineering Roles</h3>
+            <p>This portfolio demonstrates production-ready skills in cloud infrastructure, automation, and monitoring.</p>
+            <p>All projects are fully documented, reproducible, and cost-optimized.</p>
+            <p style="margin-top: 2rem;">
+                <a href="mailto:your.email@example.com" class="github-link">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" class="github-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/yourusername" class="github-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
